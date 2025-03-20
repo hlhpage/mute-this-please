@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.13.35825.156 d17.13
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "mute this please", "mute this please.csproj", "{9ED66BB9-2BB6-4069-A5F6-2BAE400FB0AB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{9ED66BB9-2BB6-4069-A5F6-2BAE400FB0AB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ED66BB9-2BB6-4069-A5F6-2BAE400FB0AB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ED66BB9-2BB6-4069-A5F6-2BAE400FB0AB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ED66BB9-2BB6-4069-A5F6-2BAE400FB0AB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BF1B6948-2820-4711-BA4B-2FCC7DE47C91}
+	EndGlobalSection
+EndGlobal
