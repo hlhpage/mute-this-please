@@ -30,7 +30,7 @@ __2 - Список устройств воспроизведения звука_
 __3 - Кнопка "Обновить список активных устройств"__ обновляет список (2) и показывает доступные на момент нажатия устройства воспроизведения звука.
 #### Режим работы
 
-__4 - Список с доступными локализациями__. Подробнее про локализации в разделе Локализация / Localization.
+__4 - Список с доступными локализациями__. Подробнее про локализации [тут](https://github.com/hlhpage/mute-this-please/blob/master/README.md#локализация--localization).
 
 __5 - Радиокнопка "Чёрный список"__ определяет режим работы программы. В режиме чёрного списка громкость будет меняться только у процессов, которые находятся в списке сфокусированных программ.
 
@@ -74,7 +74,7 @@ __2 - List of audio playback devices__ in which you can select the device for wh
 __3 - Button "Update active devices list"__ updates list (2) and shows the audio playback devices available at the time of pressing.
 #### Work mode
 
-__4 - List with available localizations__. For more information about localization, see Локализация / Localization.
+__4 - List with available localizations__. Learn more about localization [here](https://github.com/hlhpage/mute-this-please/blob/master/README.md#локализация--localization).
 
 __5 - Radio button "Blacklist"__ determines the operating mode of the program. In blacklist mode, the volume will only change for processes that are in the list of focused programs.
 
