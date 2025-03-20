@@ -18,7 +18,7 @@ When playing session games alone, I often turned on a video from the browser in 
 
 ## Интерфейс / Interface
 
-## Русский язык
+### Русский язык
 
 [![ru-Numbered.webp](https://i.postimg.cc/yxwL0Fsf/ru-Numbered.webp)](https://postimg.cc/H890g8J5)
 
@@ -26,12 +26,16 @@ __1 - Кнопка "За работу!"__ переводит программу 
 #### Устройство воспроизведения звука
 
 __2 - Список устройств воспроизведения звука__ в котором можно выбрать устройство для которого будет работать программа. Автоматически обновляется только при первом запуске программы.
+
 __3 - Кнопка "Обновить список активных устройств"__ обновляет список (2) и показывает доступные на момент нажатия устройства воспроизведения звука.
 #### Режим работы
 
-__4 - Список с доступными локализациями__. Подробнее про локализации [тут](##Локализация / Localization).
+__4 - Список с доступными локализациями__. Подробнее про локализации [тут](https://github.com/hlhpage/mute-this-please/blob/master/README.md#локализация--localization).
+
 __5 - Радиокнопка "Чёрный список"__ определяет режим работы программы. В режиме чёрного списка громкость будет меняться только у процессов, которые находятся в списке сфокусированных программ.
+
 __6 - Радиокнопка "Белый список"__ определяет режим работы программы. В режиме белого списка громкость будет меняться у всех процессов, кроме тех которые находятся в списке сфокусированных программ.
+
 __7 - Чекбокс "Сворачивать программу в трей"__. Если он активный, то при сворачивании программы она будет сворачиваться в трей. В противном случае программа будет сворачиваться в пуск.
 #### Уровень громкости
 
@@ -39,8 +43,11 @@ __8 - Ползунок__, который позволяет регулирова
 #### Горячие клавиши
 
 __9 - Текущая горячая клавиша изменения громкости__ во время работы программы.
+
 __10 - Кнопка "Изменить"__ позволяет поменять горячую клавишу изменения громкости.
+
 __11 - Текущая горячая клавиша прекращения работы__ программы. В режиме работы изменение настроек недоступно, поэтому для чтобы внести изменения в параметры, необходимо завершить режим работы. 
+
 __12 - Кнопка "Изменить"__ позволяет поменять горячую клавишу прекращения работы.
 #### Громкость звуковой индикации
 
@@ -48,11 +55,14 @@ __13 - Ползунок__, который позволяет регулиров�
 #### Список сфокусированных программ
 
 __14 - Список сфокусированных программ__ сообщает программе с какими процессами необходимо взаимодействовать. Манера взаимодействия зависит от того какой режим работы выбран (белый список или чёрный список).
+
 __15 - Кнопка "Добавить программу из микшера"__ позволяет выбрать из процессов, которые активны в микшере громкости, и добавить их в список сфокусированных программ.
+
 __16 - Кнопка "Добавить программу по названию процесса"__ позволяет добавить программу в список сфокусированных программ по названию.
+
 __17 - Кнопка "Удалить программу из списка"__  позволяет выбрать программы из списка сфокусированных программ и удалить ненужные пункты.
 
-## English language
+### English language
 
 [![en-Numbered.webp](https://i.postimg.cc/T2WF3wRk/en-Numbered.webp)](https://postimg.cc/YjMbXtLg)
 
@@ -60,12 +70,16 @@ __1 - Button "Let's get to work!"__ puts the program into operation mode with th
 #### Audio output device
 
 __2 - List of audio playback devices__ in which you can select the device for which the program will run. It is automatically updated only when the program is started for the first time.
+
 __3 - Button "Update active devices list"__ updates list (2) and shows the audio playback devices available at the time of pressing.
 #### Work mode
 
-__4 - List with available localizations__. Learn more about localization [here](##Локализация / Localization).
+__4 - List with available localizations__. Learn more about localization [here](https://github.com/hlhpage/mute-this-please/blob/master/README.md#локализация--localization).
+
 __5 - Radio button "Blacklist"__ determines the operating mode of the program. In blacklist mode, the volume will only change for processes that are in the list of focused programs.
+
 __6 - Radio button "Whitelist"__ determines the program's operating mode. In whitelist mode, the volume will change for all processes except those in the list of focused programs.
+
 __7 - Checkbox "Minimize to tray"__. If it is active, then when the program is minimized, it will be minimized to the tray. Otherwise, the program will collapse to start.
 #### Volume level
 
@@ -73,8 +87,11 @@ __8 - Trackbar__ that allows you to adjust the volume level to which the volume 
 #### Hotkeys
 
 __9 - Current hotkey for changing the volume__ while the program is running.
+
 __10 - Button "Change"__ allows you to change the volume control hotkey.
+
 __11 - Current hotkey for terminating the program__. Changing the settings is not available in the operating mode, so in order to make changes to the parameters, you must end the operating mode. 
+
 __12 - Button "Change"__ allows you to change the exit hotkey.
 #### Sound indication volume
 
@@ -82,8 +99,11 @@ __13 - Trackbar__ that allows you to adjust the volume level of the sound effect
 #### Focused programs list
 
 __14 - Focused programs list__ tells the program which processes need to be interacted with. The manner of interaction depends on which operating mode is selected (whitelist or blacklist).
+
 __15 - Button "Add program from Mixer"__ allows you to select from the processes that are active in the volume mixer and add them to the focused programs list. 
+
 __16 - Button "Add program by process name"__ allows you to add a program to the focused programs list by name.
+
 __17 - The "Delete program from the list" button__ allows you to select programs from the focused programs list and delete unnecessary items.
 
 ## Локализация / Localization
@@ -95,7 +115,9 @@ There is a languages folder in the root directory, which contains localization f
 ## Ссылки / Links
 
 Телеграм канал / Telegram channel
+
 https://t.me/hlhpage
 
-Почта для связи / 
+Почта для связи / Contact email
+
 hlhmail@vk.com
