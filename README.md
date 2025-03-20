@@ -115,7 +115,9 @@ There is a languages folder in the root directory, which contains localization f
 ## Ссылки / Links
 
 Телеграм канал / Telegram channel
+
 https://t.me/hlhpage
 
-Почта для связи / 
+Почта для связи / Contact email
+
 hlhmail@vk.com
