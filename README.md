@@ -2,6 +2,14 @@
 
 Программа для изменения громкости процессов по нажатию на горячую клавишу. / A program for changing the volume of processes by pressing a hotkey.
 
+[Один из сценариев использования / One of the usage scenarios](https://github.com/hlhpage/mute-this-please?tab=readme-ov-file#один-из-сценариев-использования--one-of-the-usage-scenarios)
+[Скачать / Download](https://github.com/hlhpage/mute-this-please?tab=readme-ov-file#скачать--download)
+[Если захотите забилдить программу самостоятельно / If you want to build the program by yourself](https://github.com/hlhpage/mute-this-please?tab=readme-ov-file#если-захотите-забилдить-программу-самостоятельно--if-you-want-to-build-the-program-by-yourself)
+[Интерфейс | Русский язык](https://github.com/hlhpage/mute-this-please?tab=readme-ov-file#русский-язык)
+[Interface | English language](https://github.com/hlhpage/mute-this-please?tab=readme-ov-file#english-language)
+[Локализация / Localization](https://github.com/hlhpage/mute-this-please?tab=readme-ov-file#локализация--localization)
+[Ссылки / Links](https://github.com/hlhpage/mute-this-please?tab=readme-ov-file#ссылки--links)
+
 ## Один из сценариев использования / One of the usage scenarios
 
 Играя в сессионные игры в одиночку, я часто включал на фон видео из браузера, однако были нередки моменты, когда необходимо прислушаться к происходящему в игре, а сворачивать приложение и ставить видео на паузу не очень удобно и забирает немало драгоценного времени. При помощи этой программы можно нажатием одной клавиши изменить громкость только у необходимых процессов.
