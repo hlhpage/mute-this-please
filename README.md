@@ -32,9 +32,9 @@ When playing session games alone, I often turned on a video from the browser in 
 
 ## Если захотите забилдить программу самостоятельно / If you want to build the program by yourself
 
-В директории откуда запускается программа обязательно должны находится два файла "mute.mp3" и "unmute.mp3". Потенциально вы можете использовать свои звуки, однако в качестве примера в корневой директории репозитория есть примеры таких файлов. Если билдите программу, то поместите эти файлы в директорию билда.
+В директории откуда запускается программа обязательно должны находится два файла "[mute.mp3](https://github.com/hlhpage/mute-this-please/blob/master/mute.mp3)" и "[unmute.mp3](https://github.com/hlhpage/mute-this-please/blob/master/unmute.mp3)". Потенциально вы можете использовать свои звуки, однако в качестве примера в корневой директории репозитория есть примеры таких файлов. Если билдите программу, то поместите эти файлы в директорию билда.
 
-In the directory from where the program is launched, there must be two files "mute.mp3" and "unmute.mp3". You can potentially use your own sounds, however, as an example, there are examples of such files in the root directory of the repository. If you are building a program, then place these files in the build directory.
+In the directory from where the program is launched, there must be two files "[mute.mp3](https://github.com/hlhpage/mute-this-please/blob/master/mute.mp3)" and "[unmute.mp3](https://github.com/hlhpage/mute-this-please/blob/master/unmute.mp3)". You can potentially use your own sounds, however, as an example, there are examples of such files in the root directory of the repository. If you are building a program, then place these files in the build directory.
 
 ## Интерфейс / Interface
 
