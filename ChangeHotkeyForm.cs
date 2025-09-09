@@ -6,7 +6,7 @@
         {
             InitializeComponent();
 
-            string labelStart = isMuteHotkeyChange ? MainForm.localization.Label_MuteHotkeyChange : MainForm.localization.Label_MuteHotkeyChange;
+            string labelStart = isMuteHotkeyChange ? MainForm.localization.Label_WorkHotkeyChange : MainForm.localization.Label_WorkHotkeyChange;
             label_ChangeHotheyHelp.Text = $"{labelStart}\n{MainForm.localization.Label_HotkeyInstruction}";
             nonSelectableButton_Confirm.Text = MainForm.localization.Button_ConfirmHotkeyChange;
             Text = MainForm.localization.Title_ChangeHotkey;

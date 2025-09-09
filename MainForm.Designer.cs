@@ -32,8 +32,12 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             groupBox_Mode = new GroupBox();
+            panel_WorkMode = new Panel();
+            radioButton_Pause = new RadioButton();
+            radioButton_Mute = new RadioButton();
             comboBox_Languages = new ComboBox();
             checkBox_treyIcon = new CheckBox();
+            panel_ListMode = new Panel();
             radioButton_Whitelist = new RadioButton();
             radioButton_Blacklist = new RadioButton();
             toolTip = new ToolTip(components);
@@ -64,6 +68,8 @@
             panel_Work = new Panel();
             label_Work = new Label();
             groupBox_Mode.SuspendLayout();
+            panel_WorkMode.SuspendLayout();
+            panel_ListMode.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)trackBar_VolumeValue).BeginInit();
             ((System.ComponentModel.ISupportInitialize)trackBar_BeepVolume).BeginInit();
             groupBox_Volume.SuspendLayout();
@@ -78,16 +84,48 @@
             // 
             // groupBox_Mode
             // 
+            groupBox_Mode.Controls.Add(panel_WorkMode);
             groupBox_Mode.Controls.Add(comboBox_Languages);
             groupBox_Mode.Controls.Add(checkBox_treyIcon);
-            groupBox_Mode.Controls.Add(radioButton_Whitelist);
-            groupBox_Mode.Controls.Add(radioButton_Blacklist);
+            groupBox_Mode.Controls.Add(panel_ListMode);
             groupBox_Mode.Location = new Point(10, 129);
             groupBox_Mode.Name = "groupBox_Mode";
-            groupBox_Mode.Size = new Size(233, 100);
+            groupBox_Mode.Size = new Size(233, 128);
             groupBox_Mode.TabIndex = 2;
             groupBox_Mode.TabStop = false;
             groupBox_Mode.Text = "Режим работы";
+            // 
+            // panel_WorkMode
+            // 
+            panel_WorkMode.Controls.Add(radioButton_Pause);
+            panel_WorkMode.Controls.Add(radioButton_Mute);
+            panel_WorkMode.Location = new Point(2, 50);
+            panel_WorkMode.Name = "panel_WorkMode";
+            panel_WorkMode.Size = new Size(229, 19);
+            panel_WorkMode.TabIndex = 9;
+            // 
+            // radioButton_Pause
+            // 
+            radioButton_Pause.AutoSize = true;
+            radioButton_Pause.Location = new Point(121, 0);
+            radioButton_Pause.Name = "radioButton_Pause";
+            radioButton_Pause.Size = new Size(57, 19);
+            radioButton_Pause.TabIndex = 9;
+            radioButton_Pause.Text = "Пауза";
+            radioButton_Pause.UseVisualStyleBackColor = true;
+            // 
+            // radioButton_Mute
+            // 
+            radioButton_Mute.AutoSize = true;
+            radioButton_Mute.Checked = true;
+            radioButton_Mute.Location = new Point(5, 0);
+            radioButton_Mute.Name = "radioButton_Mute";
+            radioButton_Mute.Size = new Size(84, 19);
+            radioButton_Mute.TabIndex = 8;
+            radioButton_Mute.TabStop = true;
+            radioButton_Mute.Text = "Громкость";
+            toolTip.SetToolTip(radioButton_Mute, "В режиме изменения громкости программа меняет громкость в микшере Windows.");
+            radioButton_Mute.UseVisualStyleBackColor = true;
             // 
             // comboBox_Languages
             // 
@@ -102,7 +140,7 @@
             // checkBox_treyIcon
             // 
             checkBox_treyIcon.AutoSize = true;
-            checkBox_treyIcon.Location = new Point(10, 74);
+            checkBox_treyIcon.Location = new Point(7, 101);
             checkBox_treyIcon.Name = "checkBox_treyIcon";
             checkBox_treyIcon.Size = new Size(200, 19);
             checkBox_treyIcon.TabIndex = 2;
@@ -110,13 +148,22 @@
             checkBox_treyIcon.UseVisualStyleBackColor = true;
             checkBox_treyIcon.CheckedChanged += checkBox_treyIcon_CheckedChanged;
             // 
+            // panel_ListMode
+            // 
+            panel_ListMode.Controls.Add(radioButton_Whitelist);
+            panel_ListMode.Controls.Add(radioButton_Blacklist);
+            panel_ListMode.Location = new Point(2, 75);
+            panel_ListMode.Name = "panel_ListMode";
+            panel_ListMode.Size = new Size(229, 19);
+            panel_ListMode.TabIndex = 8;
+            // 
             // radioButton_Whitelist
             // 
             radioButton_Whitelist.AutoSize = true;
-            radioButton_Whitelist.Location = new Point(126, 48);
+            radioButton_Whitelist.Location = new Point(121, 0);
             radioButton_Whitelist.Name = "radioButton_Whitelist";
             radioButton_Whitelist.Size = new Size(103, 19);
-            radioButton_Whitelist.TabIndex = 1;
+            radioButton_Whitelist.TabIndex = 3;
             radioButton_Whitelist.Text = "Белый список";
             toolTip.SetToolTip(radioButton_Whitelist, "В режиме белого списка громкость будет меняться у всех процессов,\r\nкроме тех которые находятся в списке сфокусированных программ.");
             radioButton_Whitelist.UseVisualStyleBackColor = true;
@@ -125,10 +172,10 @@
             // 
             radioButton_Blacklist.AutoSize = true;
             radioButton_Blacklist.Checked = true;
-            radioButton_Blacklist.Location = new Point(10, 48);
+            radioButton_Blacklist.Location = new Point(5, 0);
             radioButton_Blacklist.Name = "radioButton_Blacklist";
             radioButton_Blacklist.Size = new Size(111, 19);
-            radioButton_Blacklist.TabIndex = 0;
+            radioButton_Blacklist.TabIndex = 2;
             radioButton_Blacklist.TabStop = true;
             radioButton_Blacklist.Text = "Чёрный список";
             toolTip.SetToolTip(radioButton_Blacklist, "В режиме чёрного списка громкость будет меняться только у процессов,\r\nкоторые находятся в списке сфокусированных программ.");
@@ -225,9 +272,10 @@
             // 
             // groupBox_Volume
             // 
+            groupBox_Volume.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             groupBox_Volume.Controls.Add(trackBar_VolumeValue);
             groupBox_Volume.Controls.Add(label_VolumeValue);
-            groupBox_Volume.Location = new Point(10, 230);
+            groupBox_Volume.Location = new Point(10, 262);
             groupBox_Volume.Name = "groupBox_Volume";
             groupBox_Volume.Size = new Size(233, 75);
             groupBox_Volume.TabIndex = 4;
@@ -277,9 +325,10 @@
             // 
             // groupBox_hotkeys
             // 
+            groupBox_hotkeys.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             groupBox_hotkeys.Controls.Add(groupBox_ExitHotkey);
             groupBox_hotkeys.Controls.Add(groupBox_MuteHotkey);
-            groupBox_hotkeys.Location = new Point(10, 310);
+            groupBox_hotkeys.Location = new Point(10, 342);
             groupBox_hotkeys.Name = "groupBox_hotkeys";
             groupBox_hotkeys.Size = new Size(233, 183);
             groupBox_hotkeys.TabIndex = 5;
@@ -316,7 +365,7 @@
             groupBox_FocusedProgramsList.Controls.Add(button_addProgramFromMixer);
             groupBox_FocusedProgramsList.Location = new Point(249, 134);
             groupBox_FocusedProgramsList.Name = "groupBox_FocusedProgramsList";
-            groupBox_FocusedProgramsList.Size = new Size(280, 439);
+            groupBox_FocusedProgramsList.Size = new Size(280, 471);
             groupBox_FocusedProgramsList.TabIndex = 3;
             groupBox_FocusedProgramsList.TabStop = false;
             groupBox_FocusedProgramsList.Text = "Список сфокусированных программ";
@@ -327,13 +376,13 @@
             listBox_focusedPrograms.ItemHeight = 15;
             listBox_focusedPrograms.Location = new Point(6, 25);
             listBox_focusedPrograms.Name = "listBox_focusedPrograms";
-            listBox_focusedPrograms.Size = new Size(268, 319);
+            listBox_focusedPrograms.Size = new Size(268, 349);
             listBox_focusedPrograms.TabIndex = 7;
             // 
             // button_removeProgram
             // 
             button_removeProgram.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            button_removeProgram.Location = new Point(5, 409);
+            button_removeProgram.Location = new Point(5, 441);
             button_removeProgram.Name = "button_removeProgram";
             button_removeProgram.Size = new Size(269, 23);
             button_removeProgram.TabIndex = 6;
@@ -344,7 +393,7 @@
             // button_addProgramByName
             // 
             button_addProgramByName.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            button_addProgramByName.Location = new Point(5, 380);
+            button_addProgramByName.Location = new Point(5, 412);
             button_addProgramByName.Name = "button_addProgramByName";
             button_addProgramByName.Size = new Size(269, 23);
             button_addProgramByName.TabIndex = 5;
@@ -355,7 +404,7 @@
             // button_addProgramFromMixer
             // 
             button_addProgramFromMixer.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            button_addProgramFromMixer.Location = new Point(5, 351);
+            button_addProgramFromMixer.Location = new Point(5, 383);
             button_addProgramFromMixer.Name = "button_addProgramFromMixer";
             button_addProgramFromMixer.Size = new Size(269, 23);
             button_addProgramFromMixer.TabIndex = 4;
@@ -365,9 +414,10 @@
             // 
             // groupBox_SoundIndication
             // 
+            groupBox_SoundIndication.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             groupBox_SoundIndication.Controls.Add(label_BeepVolume);
             groupBox_SoundIndication.Controls.Add(trackBar_BeepVolume);
-            groupBox_SoundIndication.Location = new Point(10, 498);
+            groupBox_SoundIndication.Location = new Point(10, 530);
             groupBox_SoundIndication.Name = "groupBox_SoundIndication";
             groupBox_SoundIndication.Size = new Size(233, 75);
             groupBox_SoundIndication.TabIndex = 5;
@@ -377,7 +427,7 @@
             // linkLabel_hlh
             // 
             linkLabel_hlh.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            linkLabel_hlh.Location = new Point(12, 579);
+            linkLabel_hlh.Location = new Point(12, 611);
             linkLabel_hlh.Name = "linkLabel_hlh";
             linkLabel_hlh.Size = new Size(515, 15);
             linkLabel_hlh.TabIndex = 6;
@@ -396,18 +446,19 @@
             // panel_Work
             // 
             panel_Work.Controls.Add(label_Work);
-            panel_Work.Location = new Point(600, 12);
+            panel_Work.Location = new Point(590, 0);
             panel_Work.Name = "panel_Work";
-            panel_Work.Size = new Size(519, 583);
+            panel_Work.Size = new Size(555, 633);
             panel_Work.TabIndex = 7;
             panel_Work.Visible = false;
             // 
             // label_Work
             // 
+            label_Work.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             label_Work.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
-            label_Work.Location = new Point(0, 151);
+            label_Work.Location = new Point(3, 131);
             label_Work.Name = "label_Work";
-            label_Work.Size = new Size(519, 223);
+            label_Work.Size = new Size(549, 339);
             label_Work.TabIndex = 0;
             label_Work.Text = "Программа работает!\r\nНажмите ` для изменения уровня громкости.\r\nНажмите Numpad - для прекращения работы.";
             label_Work.TextAlign = ContentAlignment.MiddleCenter;
@@ -417,7 +468,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(242, 242, 242);
-            ClientSize = new Size(539, 602);
+            ClientSize = new Size(539, 634);
             Controls.Add(panel_Work);
             Controls.Add(linkLabel_hlh);
             Controls.Add(groupBox_SoundIndication);
@@ -436,6 +487,10 @@
             Resize += MainForm_Resize;
             groupBox_Mode.ResumeLayout(false);
             groupBox_Mode.PerformLayout();
+            panel_WorkMode.ResumeLayout(false);
+            panel_WorkMode.PerformLayout();
+            panel_ListMode.ResumeLayout(false);
+            panel_ListMode.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)trackBar_VolumeValue).EndInit();
             ((System.ComponentModel.ISupportInitialize)trackBar_BeepVolume).EndInit();
             groupBox_Volume.ResumeLayout(false);
@@ -453,8 +508,6 @@
 
         #endregion
         private GroupBox groupBox_Mode;
-        private RadioButton radioButton_Whitelist;
-        private RadioButton radioButton_Blacklist;
         private ToolTip toolTip;
         private Button button_start;
         private GroupBox groupBox_Volume;
@@ -484,5 +537,11 @@
         private Panel panel_Work;
         private Label label_Work;
         private ComboBox comboBox_Languages;
+        private Panel panel_ListMode;
+        private RadioButton radioButton_Whitelist;
+        private RadioButton radioButton_Blacklist;
+        private Panel panel_WorkMode;
+        private RadioButton radioButton_Pause;
+        private RadioButton radioButton_Mute;
     }
 }

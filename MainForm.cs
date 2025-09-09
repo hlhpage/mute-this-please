@@ -18,16 +18,19 @@ namespace mute_this_please
         private bool isMuted = false;
         private bool isWork = false;
 
-        private string CURRENT_DIR = AppDomain.CurrentDomain.BaseDirectory;
+        public static string CURRENT_DIR = AppDomain.CurrentDomain.BaseDirectory;
         private const string PREFERENCES_FILE = "preferences.json";
-        private string LOCALIZATION_PATH = "languages";
+        public static string LOCALIZATION_PATH = "languages";
         private const string MUTE_SOUND = "mute.mp3";
         private const string UNMUTE_SOUND = "unmute.mp3";
+
+        private bool hasMuteSound;
+        private bool hasUnmuteSound;
 
         private List<string> localizationsPaths = new List<string>();
 
 
-        private string PREFERENCES_PATH;
+        public static string PREFERENCES_PATH;
 
         private bool isTracking = false;
 
@@ -169,20 +172,20 @@ namespace mute_this_please
 
         public MainForm()
         {
-            PREFERENCES_PATH = Path.Combine(CURRENT_DIR, PREFERENCES_FILE);
-            LOCALIZATION_PATH = Path.Combine(CURRENT_DIR, LOCALIZATION_PATH);
-
             FormClosing += MainForm_FormClosing;
             Load += MainForm_Load;
 
             InitializeComponent();
-            proc = HookCallback;
+            proc = KeyCatcherCallback;
         }
 
 
 
-        private void PreferencesInit()
+        public static void PreferencesInit()
         {
+            PREFERENCES_PATH = Path.Combine(CURRENT_DIR, PREFERENCES_FILE);
+            LOCALIZATION_PATH = Path.Combine(CURRENT_DIR, LOCALIZATION_PATH);
+
             if (File.Exists(PREFERENCES_PATH))
             {
                 LoadPreferencesFromFile(PREFERENCES_PATH);
@@ -193,7 +196,7 @@ namespace mute_this_please
             }
         }
 
-        private void LoadPreferencesFromFile(string path = "")
+        public static void LoadPreferencesFromFile(string path = "")
         {
             if (path == "") path = PREFERENCES_PATH;
 
@@ -201,7 +204,7 @@ namespace mute_this_please
             preferences = JsonSerializer.Deserialize<Preferences>(json);
         }
 
-        private void SavePreferencesToFile(string path = "", bool isNew = false)
+        public static void SavePreferencesToFile(string path = "", bool isNew = false)
         {
             if (path == "") path = PREFERENCES_PATH;
             if (isNew) preferences = new Preferences();
@@ -216,7 +219,7 @@ namespace mute_this_please
             File.WriteAllText(path, json);
         }
 
-        private void LoadLocalizationsFromFiles()
+        public static void LoadLocalizationsFromFiles()
         {
             if (!Directory.Exists(LOCALIZATION_PATH)) Directory.CreateDirectory(LOCALIZATION_PATH);
 
@@ -244,7 +247,7 @@ namespace mute_this_please
 
                 preferences.Language = "Русский.json";
                 string json = JsonSerializer.Serialize(localization, options);
-                
+
                 File.WriteAllText(currentLocalization, json);
                 SavePreferencesToFile();
             }
@@ -275,13 +278,43 @@ namespace mute_this_please
             string muteSoundPath = Path.Combine(CURRENT_DIR, MUTE_SOUND);
             string unmuteSoundPath = Path.Combine(CURRENT_DIR, UNMUTE_SOUND);
 
-            audioFileMute = new AudioFileReader(muteSoundPath);
-            outputDeviceMute = new WaveOutEvent();
-            outputDeviceMute.Init(audioFileMute);
+            if (File.Exists(muteSoundPath))
+            {
+                hasMuteSound = true;
 
-            audioFileUnmute = new AudioFileReader(unmuteSoundPath);
-            outputDeviceUnmute = new WaveOutEvent();
-            outputDeviceUnmute.Init(audioFileUnmute);
+                audioFileMute = new AudioFileReader(muteSoundPath);
+                outputDeviceMute = new WaveOutEvent();
+                outputDeviceMute.Init(audioFileMute);
+            }
+            else
+            {
+                hasMuteSound = false;
+            }
+
+
+            if (File.Exists(unmuteSoundPath))
+            {
+                hasUnmuteSound = true;
+
+                audioFileUnmute = new AudioFileReader(unmuteSoundPath);
+                outputDeviceUnmute = new WaveOutEvent();
+                outputDeviceUnmute.Init(audioFileUnmute);
+            }
+            else
+            {
+                hasUnmuteSound = false;
+            }
+
+            if (!hasMuteSound || !hasUnmuteSound)
+            {
+                string finalText = "";
+
+                if (!hasMuteSound) finalText += localization.Message_MuteNotExist;
+                if (!hasUnmuteSound) finalText += localization.Message_UnmuteNotExist;
+                finalText += localization.Message_SoundWarning;
+
+                MessageBox.Show(finalText, localization.Title_MessageWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
 
             UpdateBeepVolumes();
         }
@@ -299,6 +332,10 @@ namespace mute_this_please
             toolTip.SetToolTip(radioButton_Blacklist, localization.Tooltip_Blacklist);
             radioButton_Whitelist.Text = localization.Radio_Whitelist;
             toolTip.SetToolTip(radioButton_Whitelist, localization.Tooltip_Whitelist);
+            radioButton_Mute.Text = localization.Radio_Mute;
+            toolTip.SetToolTip(radioButton_Mute, localization.Tooltip_Mute);
+            radioButton_Pause.Text = localization.Radio_Pause;
+            toolTip.SetToolTip(radioButton_Pause, localization.Tooltip_Pause);
             checkBox_treyIcon.Text = localization.Check_HideToTrey;
             toolTip.SetToolTip(comboBox_Languages, localization.Tooltip_Language);
 
@@ -308,9 +345,9 @@ namespace mute_this_please
 
             groupBox_hotkeys.Text = localization.Group_Hotkeys;
 
-            groupBox_MuteHotkey.Text = localization.Group_MuteHotkey;
+            groupBox_MuteHotkey.Text = localization.Group_WorkHotkey;
             button_HotkeyVolume.Text = localization.Button_ChangeMuteHothey;
-            toolTip.SetToolTip(label_HotkeyVolume, localization.Tooltip_MuteHotkey);
+            toolTip.SetToolTip(label_HotkeyVolume, localization.Tooltip_WorkHotkey);
 
             groupBox_ExitHotkey.Text = localization.Group_ExitHotkey;
             button_HotkeyExit.Text = localization.Button_ChangeExitHothey;
@@ -351,6 +388,29 @@ namespace mute_this_please
                 radioButton_Whitelist.Checked = false;
             }
 
+            if (preferences.PauseMode)
+            {
+                radioButton_Mute.Checked = false;
+                radioButton_Pause.Checked = true;
+
+                groupBox_FocusedProgramsList.Enabled = false;
+                groupBox_Device.Enabled = false;
+                groupBox_Volume.Enabled = false;
+                radioButton_Whitelist.Enabled = false;
+                radioButton_Blacklist.Enabled = false;
+            }
+            else
+            {
+                radioButton_Mute.Checked = true;
+                radioButton_Pause.Checked = false;
+
+                groupBox_FocusedProgramsList.Enabled = true;
+                groupBox_Device.Enabled = true;
+                groupBox_Volume.Enabled = true;
+                radioButton_Whitelist.Enabled = true;
+                radioButton_Blacklist.Enabled = true;
+            }
+
             listBox_focusedPrograms.Items.Clear();
 
             foreach (var item in preferences.Programs)
@@ -358,7 +418,7 @@ namespace mute_this_please
                 listBox_focusedPrograms.Items.Add(item);
             }
 
-            button_start.Enabled = preferences.Programs.Count != 0 ? true : false;
+            button_start.Enabled = preferences.Programs.Count != 0 || preferences.PauseMode ? true : false;
             checkBox_treyIcon.Checked = preferences.HideToTrey;
 
             localizationsPaths = Directory.GetFiles(LOCALIZATION_PATH, "*.json").ToList<string>();
@@ -384,7 +444,7 @@ namespace mute_this_please
         }
 
         private delegate IntPtr LowLevelKeyboardProc(int nCode, IntPtr wParam, IntPtr lParam);
-        private static IntPtr HookCallback(int nCode, IntPtr wParam, IntPtr lParam)
+        private static IntPtr KeyCatcherCallback(int nCode, IntPtr wParam, IntPtr lParam)
         {
             if (nCode >= 0)
             {
@@ -417,32 +477,14 @@ namespace mute_this_please
                             {
                                 mainForm.PlaySound();
 
-                                if (!preferences.WhitelistMode)
+                                if (preferences.PauseMode)
                                 {
-                                    if (!mainForm.isMuted) mainForm.defaultVolumeLevel = mainForm.GetDefaultLevels();
-
-                                    foreach (var item in preferences.Programs)
-                                    {
-                                        if (!mainForm.defaultVolumeLevel.ContainsKey(item)) continue;
-
-                                        mainForm.ChangeVolume(item, !mainForm.isMuted ? preferences.Volume : (int)(mainForm.defaultVolumeLevel[item] * 100));
-                                    }
-
+                                    PauseMethod(mainForm);
                                 }
                                 else
                                 {
-                                    var allActiveSessions = mainForm.GetAllSessions();
-                                    if (!mainForm.isMuted) mainForm.defaultVolumeLevel = mainForm.GetDefaultLevels();
-
-                                    foreach (var item in allActiveSessions)
-                                    {
-                                        if (preferences.Programs.Contains(item)) continue;
-
-                                        mainForm.ChangeVolume(item, !mainForm.isMuted ? preferences.Volume : (int)(mainForm.defaultVolumeLevel[item] * 100));
-                                    }
-
+                                    VolumeMethod(mainForm);
                                 }
-
 
                                 mainForm.isMuted = !mainForm.isMuted;
                             }
@@ -466,6 +508,50 @@ namespace mute_this_please
 
             return CallNextHookEx(hookID, nCode, wParam, lParam);
         }
+
+        private static void VolumeMethod(MainForm mainForm)
+        {
+            if (!preferences.WhitelistMode)
+            {
+                if (!mainForm.isMuted) mainForm.defaultVolumeLevel = mainForm.GetDefaultLevels();
+
+                foreach (var item in preferences.Programs)
+                {
+                    if (!mainForm.defaultVolumeLevel.ContainsKey(item)) continue;
+
+                    mainForm.ChangeVolume(item, !mainForm.isMuted ? preferences.Volume : (int)(mainForm.defaultVolumeLevel[item] * 100));
+                }
+
+            }
+            else
+            {
+                var allActiveSessions = mainForm.GetAllSessions();
+                if (!mainForm.isMuted) mainForm.defaultVolumeLevel = mainForm.GetDefaultLevels();
+
+                foreach (var item in allActiveSessions)
+                {
+                    if (preferences.Programs.Contains(item)) continue;
+
+                    mainForm.ChangeVolume(item, !mainForm.isMuted ? preferences.Volume : (int)(mainForm.defaultVolumeLevel[item] * 100));
+                }
+
+            }
+        }
+
+
+
+        [DllImport("user32.dll", SetLastError = true)]
+        static extern void keybd_event(byte bVk, byte bScan, uint dwFlags, UIntPtr dwExtraInfo);
+        const byte VK_MEDIA_PLAY_PAUSE = 0xB3;
+        const uint KEYEVENTF_KEYUP = 0x0002;
+
+        private static void PauseMethod(MainForm mainForm)
+        {
+            keybd_event(VK_MEDIA_PLAY_PAUSE, 0, 0, UIntPtr.Zero);
+            keybd_event(VK_MEDIA_PLAY_PAUSE, 0, KEYEVENTF_KEYUP, UIntPtr.Zero);
+        }
+
+
 
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern IntPtr SetWindowsHookEx(int idHook,
@@ -500,6 +586,8 @@ namespace mute_this_please
             trackBar_BeepVolume.Enabled = false;
             radioButton_Whitelist.Enabled = false;
             radioButton_Blacklist.Enabled = false;
+            radioButton_Pause.Enabled = false;
+            radioButton_Mute.Enabled = false;
             button_start.Enabled = false;
             panel_Work.Visible = true;
 
@@ -510,15 +598,14 @@ namespace mute_this_please
         {
             isWork = false;
 
-            if (isMuted)
+            if (!preferences.PauseMode && isMuted)
             {
                 foreach (var item in defaultVolumeLevel.Keys)
                 {
                     ChangeVolume(item, (int)(defaultVolumeLevel[item] * 100));
                 }
-
-                isMuted = false;
             }
+            isMuted = false;
 
             defaultVolumeLevel = new Dictionary<string, float>();
 
@@ -535,6 +622,8 @@ namespace mute_this_please
             trackBar_BeepVolume.Enabled = true;
             radioButton_Whitelist.Enabled = true;
             radioButton_Blacklist.Enabled = true;
+            radioButton_Mute.Enabled = true;
+            radioButton_Pause.Enabled = true;
             button_start.Enabled = true;
             panel_Work.Visible = false;
         }
@@ -684,7 +773,7 @@ namespace mute_this_please
             if ((isMuteKey && newHotkey == preferences.ExitHotkey) || (!isMuteKey && newHotkey == preferences.MuteHotkey))
             {
                 cachedChangeKeyForm = null;
-                MessageBox.Show(localization.Message_SimilarHotkeys, localization.Message_ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(localization.Message_SimilarHotkeys, localization.Title_MessageError, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -699,16 +788,20 @@ namespace mute_this_please
 
         private void PlaySound()
         {
-            outputDeviceUnmute.Stop();
-            outputDeviceMute.Stop();
+            if (hasUnmuteSound) outputDeviceUnmute.Stop();
+            if (hasMuteSound) outputDeviceMute.Stop();
 
             if (isMuted)
             {
+                if (!hasUnmuteSound) return;
+
                 audioFileUnmute.Position = 0;
                 outputDeviceUnmute.Play();
             }
             else
             {
+                if (!hasMuteSound) return;
+
                 audioFileMute.Position = 0;
                 outputDeviceMute.Play();
             }
@@ -716,8 +809,8 @@ namespace mute_this_please
 
         private void UpdateBeepVolumes()
         {
-            audioFileUnmute.Volume = preferences.BeepVolume / 100f;
-            audioFileMute.Volume = preferences.BeepVolume / 100f;
+            if (hasUnmuteSound) audioFileUnmute.Volume = preferences.BeepVolume / 100f;
+            if (hasMuteSound) audioFileMute.Volume = preferences.BeepVolume / 100f;
         }
 
         void DisposePlayer()
@@ -734,6 +827,7 @@ namespace mute_this_please
         class Preferences
         {
             public bool WhitelistMode { get; set; }
+            public bool PauseMode { get; set; }
             public bool HideToTrey { get; set; }
             public List<string> Programs { get; set; }
             public int Volume { get; set; }
@@ -773,17 +867,19 @@ namespace mute_this_please
             public string Group_WorkMode { get; set; }
             public string Group_Volume { get; set; }
             public string Group_Hotkeys { get; set; }
-            public string Group_MuteHotkey { get; set; }
+            public string Group_WorkHotkey { get; set; }
             public string Group_ExitHotkey { get; set; }
             public string Group_SoundIndication { get; set; }
             public string Group_FocusedProgramList { get; set; }
             public string Radio_Blacklist { get; set; }
             public string Radio_Whitelist { get; set; }
+            public string Radio_Mute { get; set; }
+            public string Radio_Pause { get; set; }
             public string Check_HideToTrey { get; set; }
             public string Label_AddByNameInstruction { get; set; }
             public string Label_AddWithMixer { get; set; }
             public string Label_RemoveWithMixer { get; set; }
-            public string Label_MuteHotkeyChange { get; set; }
+            public string Label_WorkHotkeyChange { get; set; }
             public string Label_ExitHotkeyChange { get; set; }
             public string Label_HotkeyInstruction { get; set; }
             public string Label_HotkeyDetect { get; set; }
@@ -823,14 +919,21 @@ namespace mute_this_please
             public string Title_RemoveWithMixer { get; set; }
             public string Title_ChangeHotkey { get; set; }
             public string List_DefaultDevice { get; set; }
-            public string Message_ErrorTitle { get; set; }
+            public string Title_MessageError { get; set; }
+            public string Title_MessageWarning { get; set; }
             public string Message_EmptyList { get; set; }
             public string Message_EmptyMixer { get; set; }
             public string Message_SimilarHotkeys { get; set; }
+            public string Message_MuteNotExist { get; set; }
+            public string Message_UnmuteNotExist { get; set; }
+            public string Message_SoundWarning { get; set; }
+            public string Message_InstanceError { get; set; }
             public string Tooltip_Blacklist { get; set; }
             public string Tooltip_Whitelist { get; set; }
+            public string Tooltip_Mute { get; set; }
+            public string Tooltip_Pause { get; set; }
             public string Tooltip_Volume { get; set; }
-            public string Tooltip_MuteHotkey { get; set; }
+            public string Tooltip_WorkHotkey { get; set; }
             public string Tooltip_ExitHotkey { get; set; }
             public string Tooltip_IndicationVolume { get; set; }
             public string Tooltip_Language { get; set; }
@@ -853,18 +956,20 @@ namespace mute_this_please
                 Group_WorkMode = "Режим работы";
                 Group_Volume = "Уровень громкости";
                 Group_Hotkeys = "Горячие клавиши";
-                Group_MuteHotkey = "Кнопка изменения громкости";
-                Group_ExitHotkey = "Кнопка прекращения работы";
+                Group_WorkHotkey = "Рабочая клавиша";
+                Group_ExitHotkey = "Клавиша прекращения работы";
                 Group_SoundIndication = "Громкость звуковой индикации";
                 Group_FocusedProgramList = "Список сфокусированных программ";
                 Radio_Blacklist = "Чёрный список";
                 Radio_Whitelist = "Белый список";
+                Radio_Mute = "Громкость";
+                Radio_Pause = "Пауза";
                 Check_HideToTrey = "Сворачивать программу в трей";
-                Label_AddByNameInstruction = "Для добавления процесса введите его название без указания расширения \".exe\" на конце\nДля добавления нескольких процессов введите их названия через /";
+                Label_AddByNameInstruction = "Введите название процессов без указания расширения .exe на конце\nДля добавления нескольких процессов введите их названия через /";
                 Label_AddWithMixer = "Выберите программы для добавления";
                 Label_RemoveWithMixer = "Выберите программы для удаления";
-                Label_MuteHotkeyChange = "Изменение кнопки изменения громкости";
-                Label_ExitHotkeyChange = "Изменение кнопки прекращения работы";
+                Label_WorkHotkeyChange = "Изменение рабочей клавиши";
+                Label_ExitHotkeyChange = "Изменение клавиши прекращения работы";
                 Label_HotkeyInstruction = "Нажмите и отпустите желаемую клавишу";
                 Label_HotkeyDetect = "Зафиксировано нажатие ";
                 Label_Work = "Программа работает!\nНажмите [KEY] для изменения уровня громкости.\nНажмите [KEY] для прекращения работы.";
@@ -872,15 +977,22 @@ namespace mute_this_please
                 Title_AddWithMixer = "Добавить из микшера";
                 Title_RemoveWithMixer = "Удалить из списка сфокусированных программ";
                 Title_ChangeHotkey = "Изменение горячей клавиши";
+                Title_MessageError = "Ошибка";
+                Title_MessageWarning = "Внимание";
                 List_DefaultDevice = "(Устройство по умолчанию)";
-                Message_ErrorTitle = "Ошибка";
-                Message_EmptyList = "В списке сфокусированных програм нет ни одной позиции!";
+                Message_EmptyList = "В списке сфокусированных программ нет ни одной позиции!";
                 Message_EmptyMixer = "В микшере не найдено ни одного процесса!";
-                Message_SimilarHotkeys = "Клавиша изменения громкости и клавиша прекращения работы не должны совпадать!";
+                Message_SimilarHotkeys = "Рабочая клавиша и клавиша прекращения работы не должны совпадать!";
+                Message_MuteNotExist = "В корневой папке программы отсутствует файл mute.mp3";
+                Message_UnmuteNotExist = "\nВ корневой папке программы отсутствует файл unmute.mp3";
+                Message_SoundWarning = "\nПрограмма не будет воспроизводить отсутствующие звуки.";
+                Message_InstanceError = "Может быть запущен только один экземпляр программы.";
                 Tooltip_Blacklist = "В режиме чёрного списка громкость будет меняться только у процессов,\nкоторые находятся в списке сфокусированных программ.";
                 Tooltip_Whitelist = "В режиме белого списка громкость будет меняться у всех процессов,\nкроме тех которые находятся в списке сфокусированных программ.";
+                Tooltip_Mute = "В режиме изменения громкости программа меняет громкость в микшере Windows.";
+                Tooltip_Pause = "В режиме паузы программа эмулирует нажатие кнопки Pause на клавиатуре,\nкоторая ставит воспроизводимый контент на паузу. Не все программы корректно\nвзаимодействуют с ней, поэтому в противном случае используйте режим изменения\nгромкости.";
                 Tooltip_Volume = "Значение до которого будет изменяться уровень громкости\nпроцессов из списка сфокусированных программ.";
-                Tooltip_MuteHotkey = "Клавиша, нажатие на которую будет активировать изменение громкости.";
+                Tooltip_WorkHotkey = "Клавиша, нажатие на которую будет активировать работу программы по выбранному режиму.";
                 Tooltip_ExitHotkey = "Клавиша, нажатие на которую будет прекращать работу программы.";
                 Tooltip_IndicationVolume = "Значение громкости с которой будут воспроизводится звуки,\nсигнализирующие о активации или деактивации изменения громкости.";
                 Tooltip_Language = "Язык интерфейса программы.";
@@ -891,15 +1003,16 @@ namespace mute_this_please
         #region События
         private void MainForm_Load(object sender, EventArgs e)
         {
-            PreferencesInit();
-            LoadLocalizationsFromFiles();
             UpdadeDevices();
             InitPlayers();
 
-            panel_Work.Location = new Point(10, 12);
+            panel_Work.Location = new Point(0, 0);
 
-            radioButton_Blacklist.CheckedChanged += RadioButton_CheckedChanged;
-            radioButton_Whitelist.CheckedChanged += RadioButton_CheckedChanged;
+            radioButton_Blacklist.CheckedChanged += RadioButton_ListModeCheckedChanged;
+            radioButton_Whitelist.CheckedChanged += RadioButton_ListModeCheckedChanged;
+
+            radioButton_Mute.CheckedChanged += RadioButton_WorkModeCheckedChanged;
+            radioButton_Pause.CheckedChanged += RadioButton_WorkModeCheckedChanged;
 
             hookID = SetHook(proc);
 
@@ -944,7 +1057,7 @@ namespace mute_this_please
 
             if (acriveProcces.Count == 0)
             {
-                MessageBox.Show(localization.Message_EmptyMixer, localization.Message_ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(localization.Message_EmptyMixer, localization.Title_MessageError, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -997,7 +1110,7 @@ namespace mute_this_please
         {
             if (preferences.Programs.Count == 0)
             {
-                MessageBox.Show(localization.Message_EmptyList, localization.Message_ErrorTitle, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(localization.Message_EmptyList, localization.Title_MessageError, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -1025,7 +1138,7 @@ namespace mute_this_please
 
 
 
-        private void RadioButton_CheckedChanged(object sender, EventArgs e)
+        private void RadioButton_ListModeCheckedChanged(object sender, EventArgs e)
         {
             if (!isFormLoaded) return;
 
@@ -1036,6 +1149,21 @@ namespace mute_this_please
                 preferences.WhitelistMode = rb == radioButton_Whitelist ? true : false;
 
                 SavePreferencesToFile();
+            }
+        }
+
+        private void RadioButton_WorkModeCheckedChanged(object sender, EventArgs e)
+        {
+            if (!isFormLoaded) return;
+
+            RadioButton rb = sender as RadioButton;
+
+            if (rb != null && rb.Checked)
+            {
+                preferences.PauseMode = rb == radioButton_Pause ? true : false;
+
+                SavePreferencesToFile();
+                UpdateUI();
             }
         }
 

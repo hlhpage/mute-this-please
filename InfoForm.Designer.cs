@@ -63,7 +63,7 @@
             label_Version.Name = "label_Version";
             label_Version.Size = new Size(39, 24);
             label_Version.TabIndex = 5;
-            label_Version.Text = "v1.0";
+            label_Version.Text = "v1.1.0";
             label_Version.TextAlign = ContentAlignment.BottomRight;
             // 
             // linkLabel_SourceCode
