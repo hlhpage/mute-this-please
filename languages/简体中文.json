@@ -23,6 +23,7 @@
   "Radio_Whitelist": "白名单",
   "Radio_Mute": "音量",
   "Radio_Pause": "暂停",
+  "Check_WorkAfterStart": "启动后的工作模式",
   "Check_HideToTrey": "最小化到托盘",
   "Label_AddByNameInstruction": "请输入进程名，不要包含末尾的 .exe\n要添加多个进程，请用 / 分隔它们的名称",
   "Label_AddWithMixer": "选择要添加的程序",
@@ -46,13 +47,16 @@
   "Message_UnmuteNotExist": "\n程序根目录缺少文件 unmute.mp3",
   "Message_SoundWarning": "\n程序不会播放缺失的声音。",
   "Message_InstanceError": "程序只能运行一个实例。",
+  "Message_NoOneDeviceWasFound": "没有找到播放设备。",
+  "Message_NoOneDeviceWasFoundWarning": "没有找到播放设备。在卷模式下继续使用程序可能会导致未处理的异常。",
   "Tooltip_Blacklist": "在黑名单模式下，只有已聚焦程序列表中的进程\n其音量才会被更改。",
   "Tooltip_Whitelist": "在白名单模式下，所有进程的音量都会被更改，\n但已聚焦程序列表中的进程除外。",
-  "Tooltip_Mute": "在音量模式下，程序会更改 Windows 混音器中的音量。",
+  "Tooltip_Mute": "在音量控制模式下，程序会从windows mixer中的聚焦程序列表中更改进程的音量。",
   "Tooltip_Pause": "在暂停模式下，程序会模拟键盘上的 Pause 键，\n暂停正在播放的内容。并非所有程序都能正确响应，\n因此这种情况下请使用音量模式。",
   "Tooltip_Volume": "已聚焦程序列表中进程的音量\n将被更改为的数值。",
   "Tooltip_WorkHotkey": "按下该键将激活程序的工作模式。",
   "Tooltip_ExitHotkey": "按下该键将停止程序。",
   "Tooltip_IndicationVolume": "用于提示启用或禁用音量更改的\n提示音音量。",
-  "Tooltip_Language": "程序界面语言。"
+  "Tooltip_Language": "程序界面语言。",
+  "Tooltip_WorkAfterStart": "启动后，程序将立即切换到操作模式。"
 }

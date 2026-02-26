@@ -23,6 +23,7 @@
   "Radio_Whitelist": "ホワイトリスト",
   "Radio_Mute": "音量",
   "Radio_Pause": "一時停止",
+  "Check_WorkAfterStart": "起動後の動作モード",
   "Check_HideToTrey": "プログラムをトレイに最小化する",
   "Label_AddByNameInstruction": "プロセス名を入力してください。末尾の .exe は不要です\n複数のプロセスを追加する場合は / で区切って入力してください",
   "Label_AddWithMixer": "追加するプログラムを選択",
@@ -46,13 +47,16 @@
   "Message_UnmuteNotExist": "\nプログラムのルートフォルダに unmute.mp3 がありません",
   "Message_SoundWarning": "\n存在しないサウンドは再生されません。",
   "Message_InstanceError": "プログラムは1つのインスタンスのみ実行可能です。",
+  "Message_NoOneDeviceWasFound": "再生デバイスが見つかりませんでした。",
+  "Message_NoOneDeviceWasFoundWarning": "再生デバイスが見つかりませんでした。ボリュームモードでプログラムを継続して使用すると、未処理の例外が発生する可能性があります。",
   "Tooltip_Blacklist": "ブラックリストモードでは、音量はフォーカスされたプログラム\nリストにあるプロセスのみ変更されます。",
   "Tooltip_Whitelist": "ホワイトリストモードでは、音量はすべてのプロセスに適用されます。\nただし、フォーカスされたプログラムリストにあるものは除外されます。",
-  "Tooltip_Mute": "音量モードでは、プログラムはWindowsミキサーの音量を変更します。",
+  "Tooltip_Mute": "ボリュームコントロールモードでは、プログラムはWindowsミキサーのフォーカスされたプログラムのリストからプロセスの量を変更します。",
   "Tooltip_Pause": "一時停止モードでは、プログラムはキーボードのPauseキーをエミュレートし、\n再生中のコンテンツを一時停止します。すべてのプログラムが正しく対応する\nわけではないため、その場合は音量モードを使用してください。",
   "Tooltip_Volume": "フォーカスされたプログラムリストのプロセスの\n音量が変更される値。",
   "Tooltip_WorkHotkey": "選択したモードでプログラムを起動するキー。",
   "Tooltip_ExitHotkey": "プログラムを終了するキー。",
   "Tooltip_IndicationVolume": "音量変更の有効化/無効化を示すサウンドの\n再生音量。",
-  "Tooltip_Language": "プログラムのインターフェース言語。"
+  "Tooltip_Language": "プログラムのインターフェース言語。",
+  "Tooltip_WorkAfterStart": "起動後、プログラムはすぐに動作モードに切り替わります。"
 }

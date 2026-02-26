@@ -32,6 +32,7 @@
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             groupBox_Mode = new GroupBox();
+            checkBox_workAfterStart = new CheckBox();
             panel_WorkMode = new Panel();
             radioButton_Pause = new RadioButton();
             radioButton_Mute = new RadioButton();
@@ -84,16 +85,28 @@
             // 
             // groupBox_Mode
             // 
+            groupBox_Mode.Controls.Add(checkBox_workAfterStart);
             groupBox_Mode.Controls.Add(panel_WorkMode);
             groupBox_Mode.Controls.Add(comboBox_Languages);
             groupBox_Mode.Controls.Add(checkBox_treyIcon);
             groupBox_Mode.Controls.Add(panel_ListMode);
             groupBox_Mode.Location = new Point(10, 129);
             groupBox_Mode.Name = "groupBox_Mode";
-            groupBox_Mode.Size = new Size(233, 128);
+            groupBox_Mode.Size = new Size(233, 151);
             groupBox_Mode.TabIndex = 2;
             groupBox_Mode.TabStop = false;
             groupBox_Mode.Text = "Режим работы";
+            // 
+            // checkBox_workAfterStart
+            // 
+            checkBox_workAfterStart.AutoSize = true;
+            checkBox_workAfterStart.Location = new Point(7, 101);
+            checkBox_workAfterStart.Name = "checkBox_workAfterStart";
+            checkBox_workAfterStart.Size = new Size(189, 19);
+            checkBox_workAfterStart.TabIndex = 10;
+            checkBox_workAfterStart.Text = "Режим работы после запуска";
+            checkBox_workAfterStart.UseVisualStyleBackColor = true;
+            checkBox_workAfterStart.CheckedChanged += checkBox_workAfterStart_CheckedChanged;
             // 
             // panel_WorkMode
             // 
@@ -140,7 +153,7 @@
             // checkBox_treyIcon
             // 
             checkBox_treyIcon.AutoSize = true;
-            checkBox_treyIcon.Location = new Point(7, 101);
+            checkBox_treyIcon.Location = new Point(7, 125);
             checkBox_treyIcon.Name = "checkBox_treyIcon";
             checkBox_treyIcon.Size = new Size(200, 19);
             checkBox_treyIcon.TabIndex = 2;
@@ -275,7 +288,7 @@
             groupBox_Volume.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             groupBox_Volume.Controls.Add(trackBar_VolumeValue);
             groupBox_Volume.Controls.Add(label_VolumeValue);
-            groupBox_Volume.Location = new Point(10, 262);
+            groupBox_Volume.Location = new Point(10, 289);
             groupBox_Volume.Name = "groupBox_Volume";
             groupBox_Volume.Size = new Size(233, 75);
             groupBox_Volume.TabIndex = 4;
@@ -328,7 +341,7 @@
             groupBox_hotkeys.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             groupBox_hotkeys.Controls.Add(groupBox_ExitHotkey);
             groupBox_hotkeys.Controls.Add(groupBox_MuteHotkey);
-            groupBox_hotkeys.Location = new Point(10, 342);
+            groupBox_hotkeys.Location = new Point(10, 369);
             groupBox_hotkeys.Name = "groupBox_hotkeys";
             groupBox_hotkeys.Size = new Size(233, 183);
             groupBox_hotkeys.TabIndex = 5;
@@ -365,7 +378,7 @@
             groupBox_FocusedProgramsList.Controls.Add(button_addProgramFromMixer);
             groupBox_FocusedProgramsList.Location = new Point(249, 134);
             groupBox_FocusedProgramsList.Name = "groupBox_FocusedProgramsList";
-            groupBox_FocusedProgramsList.Size = new Size(280, 471);
+            groupBox_FocusedProgramsList.Size = new Size(280, 498);
             groupBox_FocusedProgramsList.TabIndex = 3;
             groupBox_FocusedProgramsList.TabStop = false;
             groupBox_FocusedProgramsList.Text = "Список сфокусированных программ";
@@ -376,13 +389,13 @@
             listBox_focusedPrograms.ItemHeight = 15;
             listBox_focusedPrograms.Location = new Point(6, 25);
             listBox_focusedPrograms.Name = "listBox_focusedPrograms";
-            listBox_focusedPrograms.Size = new Size(268, 349);
+            listBox_focusedPrograms.Size = new Size(268, 379);
             listBox_focusedPrograms.TabIndex = 7;
             // 
             // button_removeProgram
             // 
             button_removeProgram.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            button_removeProgram.Location = new Point(5, 441);
+            button_removeProgram.Location = new Point(5, 468);
             button_removeProgram.Name = "button_removeProgram";
             button_removeProgram.Size = new Size(269, 23);
             button_removeProgram.TabIndex = 6;
@@ -393,7 +406,7 @@
             // button_addProgramByName
             // 
             button_addProgramByName.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            button_addProgramByName.Location = new Point(5, 412);
+            button_addProgramByName.Location = new Point(5, 439);
             button_addProgramByName.Name = "button_addProgramByName";
             button_addProgramByName.Size = new Size(269, 23);
             button_addProgramByName.TabIndex = 5;
@@ -404,7 +417,7 @@
             // button_addProgramFromMixer
             // 
             button_addProgramFromMixer.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            button_addProgramFromMixer.Location = new Point(5, 383);
+            button_addProgramFromMixer.Location = new Point(5, 410);
             button_addProgramFromMixer.Name = "button_addProgramFromMixer";
             button_addProgramFromMixer.Size = new Size(269, 23);
             button_addProgramFromMixer.TabIndex = 4;
@@ -417,7 +430,7 @@
             groupBox_SoundIndication.Anchor = AnchorStyles.Bottom | AnchorStyles.Left;
             groupBox_SoundIndication.Controls.Add(label_BeepVolume);
             groupBox_SoundIndication.Controls.Add(trackBar_BeepVolume);
-            groupBox_SoundIndication.Location = new Point(10, 530);
+            groupBox_SoundIndication.Location = new Point(10, 557);
             groupBox_SoundIndication.Name = "groupBox_SoundIndication";
             groupBox_SoundIndication.Size = new Size(233, 75);
             groupBox_SoundIndication.TabIndex = 5;
@@ -427,7 +440,7 @@
             // linkLabel_hlh
             // 
             linkLabel_hlh.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            linkLabel_hlh.Location = new Point(12, 611);
+            linkLabel_hlh.Location = new Point(12, 638);
             linkLabel_hlh.Name = "linkLabel_hlh";
             linkLabel_hlh.Size = new Size(515, 15);
             linkLabel_hlh.TabIndex = 6;
@@ -448,7 +461,7 @@
             panel_Work.Controls.Add(label_Work);
             panel_Work.Location = new Point(590, 0);
             panel_Work.Name = "panel_Work";
-            panel_Work.Size = new Size(555, 633);
+            panel_Work.Size = new Size(555, 700);
             panel_Work.TabIndex = 7;
             panel_Work.Visible = false;
             // 
@@ -458,7 +471,7 @@
             label_Work.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 204);
             label_Work.Location = new Point(3, 131);
             label_Work.Name = "label_Work";
-            label_Work.Size = new Size(549, 339);
+            label_Work.Size = new Size(549, 406);
             label_Work.TabIndex = 0;
             label_Work.Text = "Программа работает!\r\nНажмите ` для изменения уровня громкости.\r\nНажмите Numpad - для прекращения работы.";
             label_Work.TextAlign = ContentAlignment.MiddleCenter;
@@ -468,7 +481,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(242, 242, 242);
-            ClientSize = new Size(539, 634);
+            ClientSize = new Size(539, 661);
             Controls.Add(panel_Work);
             Controls.Add(linkLabel_hlh);
             Controls.Add(groupBox_SoundIndication);
@@ -543,5 +556,6 @@
         private Panel panel_WorkMode;
         private RadioButton radioButton_Pause;
         private RadioButton radioButton_Mute;
+        private CheckBox checkBox_workAfterStart;
     }
 }

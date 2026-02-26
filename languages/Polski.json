@@ -23,7 +23,8 @@
   "Radio_Whitelist": "Biała lista",
   "Radio_Mute": "Głośność",
   "Radio_Pause": "Pauza",
-  "Check_HideToTrey": "Minimalizuj program do zasobnika systemowego",
+  "Check_WorkAfterStart": "Tryb pracy po uruchomieniu",
+  "Check_HideToTrey": "Minimalizuj do zasobnika",
   "Label_AddByNameInstruction": "Wpisz nazwy procesów bez rozszerzenia .exe na końcu\nAby dodać kilka procesów, wpisz ich nazwy oddzielone znakiem /",
   "Label_AddWithMixer": "Wybierz programy do dodania",
   "Label_RemoveWithMixer": "Wybierz programy do usunięcia",
@@ -46,13 +47,16 @@
   "Message_UnmuteNotExist": "\nBrak pliku unmute.mp3 w folderze głównym programu",
   "Message_SoundWarning": "\nProgram nie odtworzy brakujących dźwięków.",
   "Message_InstanceError": "Można uruchomić tylko jedną instancję programu.",
+  "Message_NoOneDeviceWasFound": "Nie znaleziono żadnego urządzenia odtwarzającego.",
+  "Message_NoOneDeviceWasFoundWarning": "Nie znaleziono żadnego urządzenia odtwarzającego. Dalsze korzystanie z programu w trybie głośności może powodować nieobsługiwane wyjątki.",
   "Tooltip_Blacklist": "W trybie czarnej listy głośność będzie zmieniana tylko dla procesów\nznajdujących się na liście wybranych programów.",
   "Tooltip_Whitelist": "W trybie białej listy głośność będzie zmieniana dla wszystkich procesów,\nz wyjątkiem tych znajdujących się na liście wybranych programów.",
-  "Tooltip_Mute": "W trybie głośności program zmienia głośność w mikserze Windows.",
+  "Tooltip_Mute": "W trybie zmiany głośności program zmienia głośność procesów z\nlisty skoncentrowanych programów w mikserze systemu Windows.",
   "Tooltip_Pause": "W trybie pauzy program emuluje klawisz Pause na klawiaturze,\nktóry zatrzymuje odtwarzany materiał. Nie wszystkie programy działają poprawnie,\ndlatego w razie problemów użyj trybu głośności.",
   "Tooltip_Volume": "Wartość, do której zostanie ustawiony poziom głośności\nprocesów z listy wybranych programów.",
   "Tooltip_WorkHotkey": "Klawisz, którego naciśnięcie aktywuje działanie programu w wybranym trybie.",
   "Tooltip_ExitHotkey": "Klawisz, którego naciśnięcie zakończy działanie programu.",
   "Tooltip_IndicationVolume": "Poziom głośności, z jakim będą odtwarzane dźwięki\ninformujące o włączeniu lub wyłączeniu zmiany głośności.",
-  "Tooltip_Language": "Język interfejsu programu."
+  "Tooltip_Language": "Język interfejsu programu.",
+  "Tooltip_WorkAfterStart": "Po uruchomieniu program natychmiast przejdzie w tryb pracy."
 }

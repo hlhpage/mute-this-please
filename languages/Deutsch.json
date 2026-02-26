@@ -23,6 +23,7 @@
   "Radio_Whitelist": "Whitelist",
   "Radio_Mute": "Lautstärke",
   "Radio_Pause": "Pause",
+  "Check_WorkAfterStart": "Betriebsart nach dem Start",
   "Check_HideToTrey": "Programm in den Tray minimieren",
   "Label_AddByNameInstruction": "Geben Sie die Prozessnamen ohne die Endung .exe ein\nUm mehrere Prozesse hinzuzufügen, trennen Sie die Namen mit /",
   "Label_AddWithMixer": "Programme zum Hinzufügen auswählen",
@@ -46,13 +47,16 @@
   "Message_UnmuteNotExist": "\nDie Datei unmute.mp3 fehlt im Hauptordner des Programms",
   "Message_SoundWarning": "\nDas Programm wird fehlende Sounds nicht abspielen.",
   "Message_InstanceError": "Es darf nur eine Instanz des Programms ausgeführt werden.",
+  "Message_NoOneDeviceWasFound": "Es wurden keine Wiedergabegeräte gefunden.",
+  "Message_NoOneDeviceWasFoundWarning": "Es wurden keine Wiedergabegeräte gefunden. Die weitere Verwendung des Programms im Modus \"Lautstärke\" kann zu unbehandelten Ausnahmen führen.",
   "Tooltip_Blacklist": "Im Blacklist-Modus wird die Lautstärke nur bei Prozessen geändert,\ndie sich in der Liste der fokussierten Programme befinden.",
   "Tooltip_Whitelist": "Im Whitelist-Modus wird die Lautstärke bei allen Prozessen geändert,\naußer denen, die sich in der Liste der fokussierten Programme befinden.",
-  "Tooltip_Mute": "Im Lautstärkemodus ändert das Programm die Lautstärke im Windows-Mixer.",
+  "Tooltip_Mute": "Im Modus zum Ändern der Lautstärke ändert das Programm die Lautstärke der Prozesse aus der Liste der fokussierten Programme im Windows-Mixer.",
   "Tooltip_Pause": "Im Pause-Modus emuliert das Programm das Drücken der Pause-Taste auf der Tastatur,\ndie den aktuell wiedergegebenen Inhalt anhält. Nicht alle Programme reagieren korrekt,\ndaher ggf. den Lautstärkemodus verwenden.",
   "Tooltip_Volume": "Der Wert, auf den die Lautstärke der Prozesse\nin der Liste der fokussierten Programme gesetzt wird.",
   "Tooltip_WorkHotkey": "Die Taste, die das Programm im gewählten Modus aktiviert.",
   "Tooltip_ExitHotkey": "Die Taste, die das Programm beendet.",
   "Tooltip_IndicationVolume": "Die Lautstärke, mit der die Sounds abgespielt werden,\ndie die Aktivierung oder Deaktivierung der Lautstärkeänderung anzeigen.",
-  "Tooltip_Language": "Programmiersprachenoberfläche."
+  "Tooltip_Language": "Programmiersprachenoberfläche.",
+  "Tooltip_WorkAfterStart": "Nach dem Start wechselt das Programm sofort in den Betriebsmodus."
 }

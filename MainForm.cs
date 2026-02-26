@@ -257,12 +257,17 @@ namespace mute_this_please
 
         private void UpdadeDevices()
         {
+            var deviceEnumerator = new MMDeviceEnumerator();
+            var devices = deviceEnumerator.EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active);
+
+            if (devices.Count == 0)
+            {
+                MessageBox.Show(localization.Message_NoOneDeviceWasFoundWarning, localization.Title_MessageWarning, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             comboBox_audioDevice.Items.Clear();
             comboBox_audioDevice.Items.Add(localization.List_DefaultDevice);
-
-            var deviceEnumerator = new MMDeviceEnumerator();
-
-            var devices = deviceEnumerator.EnumerateAudioEndPoints(DataFlow.Render, DeviceState.Active);
 
             foreach (var device in devices)
             {
@@ -336,6 +341,8 @@ namespace mute_this_please
             toolTip.SetToolTip(radioButton_Mute, localization.Tooltip_Mute);
             radioButton_Pause.Text = localization.Radio_Pause;
             toolTip.SetToolTip(radioButton_Pause, localization.Tooltip_Pause);
+            checkBox_workAfterStart.Text = localization.Check_WorkAfterStart;
+            toolTip.SetToolTip(checkBox_workAfterStart, localization.Tooltip_WorkAfterStart);
             checkBox_treyIcon.Text = localization.Check_HideToTrey;
             toolTip.SetToolTip(comboBox_Languages, localization.Tooltip_Language);
 
@@ -418,7 +425,10 @@ namespace mute_this_please
                 listBox_focusedPrograms.Items.Add(item);
             }
 
-            button_start.Enabled = preferences.Programs.Count != 0 || preferences.PauseMode ? true : false;
+            bool isReadyToWork = preferences.Programs.Count != 0 || preferences.PauseMode ? true : false;
+            button_start.Enabled = isReadyToWork;
+            checkBox_workAfterStart.Enabled = isReadyToWork;
+            checkBox_workAfterStart.Checked = preferences.WorkAfterStart;
             checkBox_treyIcon.Checked = preferences.HideToTrey;
 
             localizationsPaths = Directory.GetFiles(LOCALIZATION_PATH, "*.json").ToList<string>();
@@ -575,6 +585,7 @@ namespace mute_this_please
 
             linkLabel_hlh.Enabled = false;
             checkBox_treyIcon.Enabled = false;
+            checkBox_workAfterStart.Enabled = false;
             button_addProgramByName.Enabled = false;
             button_addProgramFromMixer.Enabled = false;
             button_removeProgram.Enabled = false;
@@ -611,6 +622,7 @@ namespace mute_this_please
 
             linkLabel_hlh.Enabled = true;
             checkBox_treyIcon.Enabled = true;
+            checkBox_workAfterStart.Enabled = true;
             button_addProgramByName.Enabled = true;
             button_addProgramFromMixer.Enabled = true;
             button_removeProgram.Enabled = true;
@@ -828,6 +840,7 @@ namespace mute_this_please
         {
             public bool WhitelistMode { get; set; }
             public bool PauseMode { get; set; }
+            public bool WorkAfterStart { get; set; }
             public bool HideToTrey { get; set; }
             public List<string> Programs { get; set; }
             public int Volume { get; set; }
@@ -839,6 +852,7 @@ namespace mute_this_please
             public Preferences()
             {
                 WhitelistMode = false;
+                WorkAfterStart = false;
                 HideToTrey = false;
                 Programs = new List<string>();
                 Volume = 0;
@@ -875,6 +889,7 @@ namespace mute_this_please
             public string Radio_Whitelist { get; set; }
             public string Radio_Mute { get; set; }
             public string Radio_Pause { get; set; }
+            public string Check_WorkAfterStart { get; set; }
             public string Check_HideToTrey { get; set; }
             public string Label_AddByNameInstruction { get; set; }
             public string Label_AddWithMixer { get; set; }
@@ -928,6 +943,8 @@ namespace mute_this_please
             public string Message_UnmuteNotExist { get; set; }
             public string Message_SoundWarning { get; set; }
             public string Message_InstanceError { get; set; }
+            public string Message_NoOneDeviceWasFoundError { get; set; }
+            public string Message_NoOneDeviceWasFoundWarning { get; set; }
             public string Tooltip_Blacklist { get; set; }
             public string Tooltip_Whitelist { get; set; }
             public string Tooltip_Mute { get; set; }
@@ -937,6 +954,7 @@ namespace mute_this_please
             public string Tooltip_ExitHotkey { get; set; }
             public string Tooltip_IndicationVolume { get; set; }
             public string Tooltip_Language { get; set; }
+            public string Tooltip_WorkAfterStart { get; set; }
 
             public Localization()
             {
@@ -964,6 +982,7 @@ namespace mute_this_please
                 Radio_Whitelist = "Белый список";
                 Radio_Mute = "Громкость";
                 Radio_Pause = "Пауза";
+                Check_WorkAfterStart = "Режим работы после запуска";
                 Check_HideToTrey = "Сворачивать программу в трей";
                 Label_AddByNameInstruction = "Введите название процессов без указания расширения .exe на конце\nДля добавления нескольких процессов введите их названия через /";
                 Label_AddWithMixer = "Выберите программы для добавления";
@@ -987,6 +1006,8 @@ namespace mute_this_please
                 Message_UnmuteNotExist = "\nВ корневой папке программы отсутствует файл unmute.mp3";
                 Message_SoundWarning = "\nПрограмма не будет воспроизводить отсутствующие звуки.";
                 Message_InstanceError = "Может быть запущен только один экземпляр программы.";
+                Message_NoOneDeviceWasFoundError = "Не было найдено ни одного устройства воспроизведения.";
+                Message_NoOneDeviceWasFoundWarning = "Не было найдено ни одного устройства воспроизведения. Дальнейшее использование программы в режиме \"Громкость\" может привести к появлению необработанных исключений.";
                 Tooltip_Blacklist = "В режиме чёрного списка громкость будет меняться только у процессов,\nкоторые находятся в списке сфокусированных программ.";
                 Tooltip_Whitelist = "В режиме белого списка громкость будет меняться у всех процессов,\nкроме тех которые находятся в списке сфокусированных программ.";
                 Tooltip_Mute = "В режиме изменения громкости программа меняет громкость в микшере Windows.";
@@ -996,6 +1017,7 @@ namespace mute_this_please
                 Tooltip_ExitHotkey = "Клавиша, нажатие на которую будет прекращать работу программы.";
                 Tooltip_IndicationVolume = "Значение громкости с которой будут воспроизводится звуки,\nсигнализирующие о активации или деактивации изменения громкости.";
                 Tooltip_Language = "Язык интерфейса программы.";
+                Tooltip_WorkAfterStart = "После запуска программа сразу перейдёт в рабочий режим.";
             }
         }
         #endregion
@@ -1019,6 +1041,8 @@ namespace mute_this_please
             SetLocalization();
             UpdateUI();
             isFormLoaded = true;
+            
+            if (preferences.WorkAfterStart && (preferences.Programs.Count != 0 || preferences.PauseMode ? true : false)) StartWork();
         }
 
         private void MainForm_FormClosing(object sender, FormClosingEventArgs e)
@@ -1165,6 +1189,15 @@ namespace mute_this_please
                 SavePreferencesToFile();
                 UpdateUI();
             }
+        }
+
+
+        private void checkBox_workAfterStart_CheckedChanged(object sender, EventArgs e)
+        {
+            preferences.WorkAfterStart = checkBox_workAfterStart.Checked;
+
+            SavePreferencesToFile();
+            UpdateUI();
         }
 
         private void checkBox_treyIcon_CheckedChanged(object sender, EventArgs e)

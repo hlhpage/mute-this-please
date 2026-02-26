@@ -23,6 +23,7 @@
   "Radio_Whitelist": "Whitelist",
   "Radio_Mute": "Volume",
   "Radio_Pause": "Pause",
+  "Check_WorkAfterStart": "Work mode after startup",
   "Check_HideToTrey": "Minimize program to tray",
   "Label_AddByNameInstruction": "Enter process names without the .exe extension at the end\nTo add multiple processes, enter their names separated by /",
   "Label_AddWithMixer": "Select programs to add",
@@ -46,13 +47,16 @@
   "Message_UnmuteNotExist": "\nThe file unmute.mp3 is missing in the program root folder",
   "Message_SoundWarning": "\nThe program will not play missing sounds.",
   "Message_InstanceError": "Only one instance of the program can be running.",
+  "Message_NoOneDeviceWasFound": "No playback device was found.",
+  "Message_NoOneDeviceWasFoundWarning": "No playback device was found. Continued use of the program in Volume mode may result in unhandled exceptions.",
   "Tooltip_Blacklist": "In blacklist mode, the volume will only change for processes\nthat are in the focused programs list.",
   "Tooltip_Whitelist": "In whitelist mode, the volume will change for all processes\nexcept those in the focused programs list.",
-  "Tooltip_Mute": "In volume mode, the program changes volume in the Windows mixer.",
+  "Tooltip_Mute": "In volume control mode, the program changes the volume of processes from the list of focused programs in the Windows mixer.",
   "Tooltip_Pause": "In pause mode, the program emulates pressing the Pause key on the keyboard,\nwhich pauses the currently playing content. Not all programs interact\nwith it correctly, so otherwise use the volume mode.",
   "Tooltip_Volume": "The value to which the volume level of processes from the focused programs list will be changed.",
   "Tooltip_WorkHotkey": "The key that will activate the program according to the selected mode.",
   "Tooltip_ExitHotkey": "The key that will stop the program.",
   "Tooltip_IndicationVolume": "The volume at which sounds will be played,\nindicating activation or deactivation of volume change.",
-  "Tooltip_Language": "Program interface language."
+  "Tooltip_Language": "Program interface language.",
+  "Tooltip_WorkAfterStart": "After launching, the program will immediately switch to work mode."
 }

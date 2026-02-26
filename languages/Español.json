@@ -23,6 +23,7 @@
   "Radio_Whitelist": "Lista blanca",
   "Radio_Mute": "Volumen",
   "Radio_Pause": "Pausa",
+  "Check_WorkAfterStart": "Inicio en modo de trabajo",
   "Check_HideToTrey": "Minimizar el programa a la bandeja",
   "Label_AddByNameInstruction": "Ingrese los nombres de los procesos sin la extensión .exe al final\nPara agregar varios procesos, ingrese sus nombres separados por /",
   "Label_AddWithMixer": "Seleccione los programas para agregar",
@@ -46,13 +47,16 @@
   "Message_UnmuteNotExist": "\nFalta el archivo unmute.mp3 en la carpeta raíz del programa",
   "Message_SoundWarning": "\nEl programa no reproducirá sonidos faltantes.",
   "Message_InstanceError": "Solo se puede ejecutar una instancia del programa.",
+  "Message_NoOneDeviceWasFound": "No se encontró ningún dispositivo de reproducción.",
+  "Message_NoOneDeviceWasFoundWarning": "No se encontró ningún dispositivo de reproducción. El uso continuado del programa en el modo de Volumen puede generar excepciones no controladas.",
   "Tooltip_Blacklist": "En el modo lista negra, el volumen solo cambiará para los procesos\nque estén en la lista de programas enfocados.",
   "Tooltip_Whitelist": "En el modo lista blanca, el volumen cambiará para todos los procesos,\nexcepto aquellos que estén en la lista de programas enfocados.",
-  "Tooltip_Mute": "En el modo de volumen, el programa cambia el volumen en el mezclador de Windows.",
+  "Tooltip_Mute": "En el modo de cambio de volumen, el programa cambia el volumen de\nlos procesos de la lista de programas enfocados en el mezclador de Windows.",
   "Tooltip_Pause": "En el modo pausa, el programa emula la tecla Pause del teclado,\nque detiene el contenido en reproducción. No todos los programas responden correctamente,\npor lo que en ese caso use el modo de volumen.",
   "Tooltip_Volume": "El valor al que se ajustará el volumen de los procesos\nde la lista de programas enfocados.",
   "Tooltip_WorkHotkey": "La tecla que activará el programa en el modo seleccionado.",
   "Tooltip_ExitHotkey": "La tecla que detendrá el programa.",
   "Tooltip_IndicationVolume": "El volumen al que se reproducirán los sonidos\nque indican la activación o desactivación del cambio de volumen.",
-  "Tooltip_Language": "Idioma de la interfaz del programa."
+  "Tooltip_Language": "Idioma de la interfaz del programa.",
+  "Tooltip_WorkAfterStart": "Después del Inicio, el programa entrará inmediatamente en modo de trabajo."
 }

@@ -23,7 +23,8 @@
   "Radio_Whitelist": "Liste blanche",
   "Radio_Mute": "Volume",
   "Radio_Pause": "Pause",
-  "Check_HideToTrey": "Réduire le programme dans la barre système",
+  "Check_WorkAfterStart": "Démarrage en mode de travail",
+  "Check_HideToTrey": "Réduire dans la zone de notification",
   "Label_AddByNameInstruction": "Entrez les noms de processus sans l’extension .exe à la fin\nPour ajouter plusieurs processus, entrez leurs noms séparés par /",
   "Label_AddWithMixer": "Sélectionnez les programmes à ajouter",
   "Label_RemoveWithMixer": "Sélectionnez les programmes à supprimer",
@@ -46,13 +47,16 @@
   "Message_UnmuteNotExist": "\nLe fichier unmute.mp3 est manquant dans le dossier racine du programme",
   "Message_SoundWarning": "\nLe programme ne jouera pas les sons manquants.",
   "Message_InstanceError": "Une seule instance du programme peut être exécutée.",
+  "Message_NoOneDeviceWasFound": "Aucun périphérique de lecture n'a été trouvé.",
+  "Message_NoOneDeviceWasFoundWarning": "Aucun périphérique de lecture n'a été trouvé. L'utilisation continue du programme en mode Volume peut entraîner des exceptions non gérées.",
   "Tooltip_Blacklist": "En mode liste noire, le volume ne sera modifié que pour les processus\nprésents dans la liste des programmes ciblés.",
   "Tooltip_Whitelist": "En mode liste blanche, le volume sera modifié pour tous les processus,\nsauf ceux présents dans la liste des programmes ciblés.",
-  "Tooltip_Mute": "En mode volume, le programme modifie le volume dans le mixeur Windows.",
+  "Tooltip_Mute": "En mode de modification du volume, le programme modifie le volume des\nprocessus à partir de la liste des programmes ciblés dans le mélangeur Windows.",
   "Tooltip_Pause": "En mode pause, le programme émule la touche Pause du clavier,\nqui met en pause le contenu en cours de lecture. Tous les programmes ne réagissent pas correctement,\ndans ce cas utilisez le mode volume.",
   "Tooltip_Volume": "La valeur à laquelle sera ajusté le volume des processus\nde la liste des programmes ciblés.",
   "Tooltip_WorkHotkey": "La touche qui activera le programme dans le mode sélectionné.",
   "Tooltip_ExitHotkey": "La touche qui arrêtera le programme.",
   "Tooltip_IndicationVolume": "Le volume auquel seront joués les sons\nindiquant l’activation ou la désactivation du changement de volume.",
-  "Tooltip_Language": "Langue de l’interface du programme."
+  "Tooltip_Language": "Langue de l’interface du programme.",
+  "Tooltip_WorkAfterStart": "Après le démarrage, le programme passe immédiatement en mode de travail."
 }
