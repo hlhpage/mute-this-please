@@ -40,7 +40,7 @@ There may be two files in the directory from where the program is launched. "[mu
 
 ### Русский язык
 
-<img width="541" height="666" alt="ru ui 1 1 0" src="https://github.com/user-attachments/assets/06a0f9b3-b791-420a-a918-3b6e6716e822" />
+<img width="541" height="693" alt="ui_ru" src="https://github.com/user-attachments/assets/4a9acb51-f717-4bb9-a6a7-08657620573b" />
 
 __1 - Кнопка "За работу!"__ переводит программу в режим работы с установленными настройками. Активна только если в списке сфокусированных программ есть хотя бы одна позиция. В режиме работы изменение настроек невозможно, поэтому для внесения изменений необходимо сначала прекратить работу.
 #### Устройство воспроизведения звука
@@ -60,35 +60,37 @@ __7 - Радиокнопка "Чёрный список"__ определяет 
 
 __8 - Радиокнопка "Белый список"__ определяет режим работы программы в режиме "Громкость". В режиме белого списка громкость будет меняться у всех процессов, кроме тех которые находятся в списке сфокусированных программ.
 
-__9 - Чекбокс "Сворачивать программу в трей"__. Если он активный, то при сворачивании программы она будет сворачиваться в трей. В противном случае программа будет сворачиваться в пуск.
+__9 - Чекбокс "Режим работы после запуска"__ При активном чекбоксе программа сразу после запуска будет переходить в рабочий режим.
+
+__10 - Чекбокс "Сворачивать программу в трей"__. Если он активный, то при сворачивании программы она будет сворачиваться в трей. В противном случае программа будет сворачиваться в пуск.
 #### Уровень громкости
 
-__10 - Ползунок__, который позволяет регулировать уровень громкости до которого будет изменяться громкость программ во время работы по нажатию на горячую клавишу.
+__11 - Ползунок__, который позволяет регулировать уровень громкости до которого будет изменяться громкость программ во время работы по нажатию на горячую клавишу.
 #### Горячие клавиши
 
-__11 - Текущая горячая клавиша изменения громкости__ во время работы программы.
+__12 - Текущая горячая клавиша изменения громкости__ во время работы программы.
 
-__12 - Кнопка "Изменить"__ позволяет поменять горячую клавишу изменения громкости.
+__13 - Кнопка "Изменить"__ позволяет поменять горячую клавишу изменения громкости.
 
-__13 - Текущая горячая клавиша прекращения работы__ программы. В режиме работы изменение настроек недоступно, поэтому для чтобы внести изменения в параметры, необходимо завершить режим работы. 
+__14 - Текущая горячая клавиша прекращения работы__ программы. В режиме работы изменение настроек недоступно, поэтому для чтобы внести изменения в параметры, необходимо завершить режим работы. 
 
-__14 - Кнопка "Изменить"__ позволяет поменять горячую клавишу прекращения работы.
+__15 - Кнопка "Изменить"__ позволяет поменять горячую клавишу прекращения работы.
 #### Громкость звуковой индикации
 
-__15 - Ползунок__, который позволяет регулировать уровень громкости звукового эффекта при нажатии на горячую клавишу изменения громкости во время режима работы.
+__16 - Ползунок__, который позволяет регулировать уровень громкости звукового эффекта при нажатии на горячую клавишу изменения громкости во время режима работы.
 #### Список сфокусированных программ
 
-__16 - Список сфокусированных программ__ сообщает программе с какими процессами необходимо взаимодействовать. Манера взаимодействия зависит от того какой режим работы выбран (белый список или чёрный список).
+__17 - Список сфокусированных программ__ сообщает программе с какими процессами необходимо взаимодействовать. Манера взаимодействия зависит от того какой режим работы выбран (белый список или чёрный список).
 
-__17 - Кнопка "Добавить программу из микшера"__ позволяет выбрать из процессов, которые активны в микшере громкости, и добавить их в список сфокусированных программ.
+__18 - Кнопка "Добавить программу из микшера"__ позволяет выбрать из процессов, которые активны в микшере громкости, и добавить их в список сфокусированных программ.
 
-__18 - Кнопка "Добавить программу по названию процесса"__ позволяет добавить программу в список сфокусированных программ по названию.
+__19 - Кнопка "Добавить программу по названию процесса"__ позволяет добавить программу в список сфокусированных программ по названию.
 
-__19 - Кнопка "Удалить программу из списка"__  позволяет выбрать программы из списка сфокусированных программ и удалить ненужные пункты.
+__20 - Кнопка "Удалить программу из списка"__  позволяет выбрать программы из списка сфокусированных программ и удалить ненужные пункты.
 
 ### English language
 
-<img width="541" height="666" alt="en ui 1 1 0" src="https://github.com/user-attachments/assets/0c200ae9-f074-4b2c-97c1-895944636d6e" />
+<img width="541" height="693" alt="ui_en" src="https://github.com/user-attachments/assets/22844124-ee5b-4376-86ec-86c8ebd88b68" />
 
 __1 - Button "Let's get to work!"__ puts the program into operation mode with the set settings. It is active only if there is at least one position in the list of focused programs. It is not possible to change the settings in the operating mode, therefore, to make changes, you must first stop working.
 #### Audio output device
@@ -100,39 +102,41 @@ __3 - Button "Update active devices list"__ updates list (2) and shows the audio
 
 __4 - List with available localizations__. Learn more about localization [here](https://github.com/hlhpage/mute-this-please/blob/master/README.md#локализация--localization).
 
-__5 - The radio button "Volume"__ determines the operating mode of the program. In volume, the program will change the volume of processes based on the list of focused programs and the selected whitelist or blacklist mode.
+__5 - Radio button "Volume"__ determines the operating mode of the program. In volume, the program will change the volume of processes based on the list of focused programs and the selected whitelist or blacklist mode.
 
-__6 - The radio button "Pause"__ determines the operating mode of the program. In pause mode, pressing the "Pause" button will be emulated, which pauses the playing content. But not all programs can respond to its pressing.
+__6 - Radio button "Pause"__ determines the operating mode of the program. In pause mode, pressing the "Pause" button will be emulated, which pauses the playing content. But not all programs can respond to its pressing.
 
-__7 - The radio button "Blacklist"__ determines the operating mode of the program in the "Volume" mode. In blacklist mode, the volume will only change for processes that are in the list of focused programs.
+__7 - Radio button "Blacklist"__ determines the operating mode of the program in the "Volume" mode. In blacklist mode, the volume will only change for processes that are in the list of focused programs.
 
-__8 - The radio button "Whitelist"__ determines the operating mode of the program in the "Volume" mode. In whitelist mode, the volume will change for all processes except those in the list of focused programs.
+__8 - Radio button "Whitelist"__ determines the operating mode of the program in the "Volume" mode. In whitelist mode, the volume will change for all processes except those in the list of focused programs.
 
-__9 - Checkbox "Minimize to tray"__. If it is active, then when the program is minimized, it will be minimized to the tray. Otherwise, the program will collapse to start.
+__9 - Checkbox "Work mode after startup"__ When the checkbox is active, the program will switch to operating mode immediately after startup.
+
+__10 - Checkbox "Minimize to tray"__. If it is active, then when the program is minimized, it will be minimized to the tray. Otherwise, the program will collapse to start.
 #### Volume level
 
-__10 - Trackbar__ that allows you to adjust the volume level to which the volume of programs will change during operation by pressing a hotkey.
+__11 - Trackbar__ that allows you to adjust the volume level to which the volume of programs will change during operation by pressing a hotkey.
 #### Hotkeys
 
-__11 - Current hotkey for changing the volume__ while the program is running.
+__12 - Current hotkey for changing the volume__ while the program is running.
 
-__12 - Button "Change"__ allows you to change the volume control hotkey.
+__13 - Button "Change"__ allows you to change the volume control hotkey.
 
-__13 - Current hotkey for terminating the program__. Changing the settings is not available in the operating mode, so in order to make changes to the parameters, you must end the operating mode. 
+__14 - Current hotkey for terminating the program__. Changing the settings is not available in the operating mode, so in order to make changes to the parameters, you must end the operating mode. 
 
-__14 - Button "Change"__ allows you to change the exit hotkey.
+__15 - Button "Change"__ allows you to change the exit hotkey.
 #### Sound indication volume
 
-__15 - Trackbar__ that allows you to adjust the volume level of the sound effect when pressing the volume control hotkey during operation.
+__16 - Trackbar__ that allows you to adjust the volume level of the sound effect when pressing the volume control hotkey during operation.
 #### Focused programs list
 
-__16 - Focused programs list__ tells the program which processes need to be interacted with. The manner of interaction depends on which operating mode is selected (whitelist or blacklist).
+__17 - Focused programs list__ tells the program which processes need to be interacted with. The manner of interaction depends on which operating mode is selected (whitelist or blacklist).
 
-__17 - Button "Add program from Mixer"__ allows you to select from the processes that are active in the volume mixer and add them to the focused programs list. 
+__18 - Button "Add program from Mixer"__ allows you to select from the processes that are active in the volume mixer and add them to the focused programs list. 
 
-__18 - Button "Add program by process name"__ allows you to add a program to the focused programs list by name.
+__19 - Button "Add program by process name"__ allows you to add a program to the focused programs list by name.
 
-__19 - The "Delete program from the list" button__ allows you to select programs from the focused programs list and delete unnecessary items.
+__20 - The "Delete program from the list" button__ allows you to select programs from the focused programs list and delete unnecessary items.
 
 ## Локализация / Localization
 
