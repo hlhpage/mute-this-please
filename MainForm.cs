@@ -374,10 +374,26 @@ namespace mute_this_please
 
         private void UpdateUI()
         {
+            panel_Work.Visible = isWork;
+
+            linkLabel_hlh.Enabled = !isWork;
+            button_addProgramByName.Enabled = !isWork;
+            button_addProgramFromMixer.Enabled = !isWork;
+            button_removeProgram.Enabled = !isWork;
+            button_HotkeyVolume.Enabled = !isWork;
+            button_HotkeyExit.Enabled = !isWork;
+            comboBox_audioDevice.Enabled = !isWork;
+            button_UpdateDevices.Enabled = !isWork;
+            radioButton_Mute.Enabled = !isWork;
+            radioButton_Pause.Enabled = !isWork;
+            comboBox_Languages.Enabled = !isWork;
+
             label_VolumeValue.Text = $"{preferences.Volume}%";
             trackBar_VolumeValue.Value = preferences.Volume;
+            trackBar_VolumeValue.Enabled = !isWork;
             label_BeepVolume.Text = $"{preferences.BeepVolume}%";
             trackBar_BeepVolume.Value = preferences.BeepVolume;
+            trackBar_BeepVolume.Enabled = !isWork;
             humanKeys.TryGetValue(preferences.MuteHotkey, out string muteKey);
             label_HotkeyVolume.Text = muteKey;
             humanKeys.TryGetValue(preferences.ExitHotkey, out string exitKey);
@@ -411,11 +427,11 @@ namespace mute_this_please
                 radioButton_Mute.Checked = true;
                 radioButton_Pause.Checked = false;
 
-                groupBox_FocusedProgramsList.Enabled = true;
-                groupBox_Device.Enabled = true;
-                groupBox_Volume.Enabled = true;
-                radioButton_Whitelist.Enabled = true;
-                radioButton_Blacklist.Enabled = true;
+                groupBox_FocusedProgramsList.Enabled = isWork ? false : true;
+                groupBox_Device.Enabled = isWork ? false : true;
+                groupBox_Volume.Enabled = isWork ? false : true;
+                radioButton_Whitelist.Enabled = isWork ? false : true;
+                radioButton_Blacklist.Enabled = isWork ? false : true;
             }
 
             listBox_focusedPrograms.Items.Clear();
@@ -425,10 +441,11 @@ namespace mute_this_please
                 listBox_focusedPrograms.Items.Add(item);
             }
 
-            bool isReadyToWork = preferences.Programs.Count != 0 || preferences.PauseMode ? true : false;
+            bool isReadyToWork = (preferences.Programs.Count != 0 || preferences.PauseMode) && !isWork ? true : false;
             button_start.Enabled = isReadyToWork;
             checkBox_workAfterStart.Enabled = isReadyToWork;
             checkBox_workAfterStart.Checked = preferences.WorkAfterStart;
+            checkBox_treyIcon.Enabled = !isWork;
             checkBox_treyIcon.Checked = preferences.HideToTrey;
 
             localizationsPaths = Directory.GetFiles(LOCALIZATION_PATH, "*.json").ToList<string>();
@@ -582,27 +599,9 @@ namespace mute_this_please
         private void StartWork()
         {
             isMuted = false;
-
-            linkLabel_hlh.Enabled = false;
-            checkBox_treyIcon.Enabled = false;
-            checkBox_workAfterStart.Enabled = false;
-            button_addProgramByName.Enabled = false;
-            button_addProgramFromMixer.Enabled = false;
-            button_removeProgram.Enabled = false;
-            button_HotkeyVolume.Enabled = false;
-            button_HotkeyExit.Enabled = false;
-            comboBox_audioDevice.Enabled = false;
-            button_UpdateDevices.Enabled = false;
-            trackBar_VolumeValue.Enabled = false;
-            trackBar_BeepVolume.Enabled = false;
-            radioButton_Whitelist.Enabled = false;
-            radioButton_Blacklist.Enabled = false;
-            radioButton_Pause.Enabled = false;
-            radioButton_Mute.Enabled = false;
-            button_start.Enabled = false;
-            panel_Work.Visible = true;
-
             isWork = true;
+
+            UpdateUI();
         }
 
         private void EndWork()
@@ -620,24 +619,7 @@ namespace mute_this_please
 
             defaultVolumeLevel = new Dictionary<string, float>();
 
-            linkLabel_hlh.Enabled = true;
-            checkBox_treyIcon.Enabled = true;
-            checkBox_workAfterStart.Enabled = true;
-            button_addProgramByName.Enabled = true;
-            button_addProgramFromMixer.Enabled = true;
-            button_removeProgram.Enabled = true;
-            button_HotkeyVolume.Enabled = true;
-            button_HotkeyExit.Enabled = true;
-            comboBox_audioDevice.Enabled = true;
-            button_UpdateDevices.Enabled = true;
-            trackBar_VolumeValue.Enabled = true;
-            trackBar_BeepVolume.Enabled = true;
-            radioButton_Whitelist.Enabled = true;
-            radioButton_Blacklist.Enabled = true;
-            radioButton_Mute.Enabled = true;
-            radioButton_Pause.Enabled = true;
-            button_start.Enabled = true;
-            panel_Work.Visible = false;
+            UpdateUI();
         }
 
         private void ChangeVolume(string processName, int settedVolume)

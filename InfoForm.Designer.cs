@@ -59,11 +59,11 @@
             // label_Version
             // 
             label_Version.Font = new Font("Segoe UI", 8.25F, FontStyle.Regular, GraphicsUnit.Point, 204);
-            label_Version.Location = new Point(147, 212);
+            label_Version.Location = new Point(139, 212);
             label_Version.Name = "label_Version";
-            label_Version.Size = new Size(39, 24);
+            label_Version.Size = new Size(47, 24);
             label_Version.TabIndex = 5;
-            label_Version.Text = "v1.2.1";
+            label_Version.Text = "версия";
             label_Version.TextAlign = ContentAlignment.BottomRight;
             // 
             // linkLabel_SourceCode
